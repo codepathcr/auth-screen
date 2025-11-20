@@ -8,6 +8,31 @@ A small Java Swing authentication demo. This README explains how to build and ru
 - **JDBC driver:** PostgreSQL JDBC jar in `lib/` OR use Maven to fetch dependencies.
 - **Shell:** Windows PowerShell examples below.
 
+**Java & Maven (quick setup)**
+
+- Install a Java 21 JDK (Temurin / Adoptium or other vendor). Example paths used in this README: `C:\Program Files\Eclipse Adoptium\jdk-21...` or `C:\Java\jdk-21`.
+- Install Apache Maven (binary ZIP) and extract to e.g. `C:\apache-maven\apache-maven-3.9.11`.
+
+Temporary (current PowerShell session) — verify quickly:
+```powershell
+$env:JAVA_HOME = 'C:\Program Files\Eclipse Adoptium\jdk-21.0.8.9-hotspot'  # adjust to your installed JDK
+$env:MAVEN_HOME = 'C:\apache-maven\apache-maven-3.9.11'                     # adjust to your Maven folder
+$env:Path = "$env:MAVEN_HOME\bin;$env:JAVA_HOME\bin;$env:Path"
+java -version
+mvn -v
+```
+
+Persist (user-scoped) — set permanently so new shells see it:
+```powershell
+setx JAVA_HOME "C:\Program Files\Eclipse Adoptium\jdk-21.0.8.9-hotspot"
+setx MAVEN_HOME "C:\apache-maven\apache-maven-3.9.11"
+# Prepend to the user PATH (keeps existing user PATH)
+$oldUserPath = [Environment]::GetEnvironmentVariable('Path','User')
+[Environment]::SetEnvironmentVariable('Path', "C:\apache-maven\apache-maven-3.9.11\bin;C:\Program Files\Eclipse Adoptium\jdk-21.0.8.9-hotspot\bin;$oldUserPath", 'User')
+```
+
+After persisting, open a new PowerShell and run `java -version` and `mvn -v` to confirm.
+
 **Project layout (important files):**
 - `src/main/java/com/auth/` : Java sources (UI and DB code).
 - `dbScript/auth.sql` : SQL script to create the `usuarios` table and sample data.

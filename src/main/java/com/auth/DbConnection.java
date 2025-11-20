@@ -13,19 +13,33 @@ public class DbConnection {
     private static final String DB_PASSWORD = getEnvOrDefault("DB_PASSWORD", "test");
 
     public static Connection getConnection() throws SQLException {
-        // Ensure the PostgreSQL driver class is loaded so DriverManager can find it
+        // Allow overriding the JDBC driver class via system property or env var (DB_DRIVER)
+        String driverClass = getEnvOrDefault("DB_DRIVER", "org.postgresql.Driver");
         try {
-            Class.forName("org.postgresql.Driver");
+            Class.forName(driverClass);
         } catch (ClassNotFoundException e) {
-            throw new SQLException("PostgreSQL JDBC driver not found on classpath. Make sure the driver jar is available (e.g. put it in lib/ and run with lib/*).", e);
+            throw new SQLException(driverClass + " JDBC driver not found on classpath. Make sure the driver jar is available.", e);
         }
 
         return DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
     }
 
     // Helper that treats null or empty env values as unset and returns the fallback.
+    // First check System properties (useful for tests), then environment variables.
     private static String getEnvOrDefault(String name, String fallback) {
-        String value = System.getenv(name);
+        // Delegate to the testable helper to avoid duplicating the
+        // null/empty checks and to make these branches reachable from unit tests.
+        return getEnvOrDefaultUsingValue(name, fallback, System.getenv(name));
+    }
+
+    // Package-private helper used by tests to simulate environment values without
+    // attempting to modify the real process environment.
+    static String getEnvOrDefaultUsingValue(String name, String fallback, String envValue) {
+        String sys = System.getProperty(name);
+        if (sys != null && !sys.trim().isEmpty()) {
+            return sys;
+        }
+        String value = envValue;
         if (value == null || value.trim().isEmpty()) {
             return fallback;
         }
