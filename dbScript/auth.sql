@@ -1,4 +1,4 @@
-CREATE DATABASE pswe06;
+--CREATE DATABASE pswe06; database previously created as per steps in the README
 
 CREATE TABLE usuarios (
     id              SERIAL PRIMARY KEY,
