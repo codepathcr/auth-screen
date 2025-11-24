@@ -1,0 +1,293 @@
+﻿{
+  "vulnerabilities": [
+    {
+      "id": "SNYK-JAVA-ORGPOSTGRESQL-6252740",
+      "title": "SQL Injection",
+      "CVSSv3": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:C/C:H/I:H/A:H",
+      "credit": [
+        "Unknown"
+      ],
+      "semver": {
+        "vulnerable": [
+          "[,42.2.28.jre7)",
+          "[42.3.0,42.3.9)",
+          "[42.4.0,42.4.4)",
+          "[42.5.0,42.5.5)",
+          "[42.6.0,42.6.1)",
+          "[42.7.0,42.7.2)"
+        ]
+      },
+      "exploit": "Not Defined",
+      "fixedIn": [
+        "42.2.28.jre7",
+        "42.3.9",
+        "42.4.4",
+        "42.5.5",
+        "42.6.1",
+        "42.7.2"
+      ],
+      "patches": [],
+      "insights": {
+        "triageAdvice": null
+      },
+      "language": "java",
+      "severity": "critical",
+      "cvssScore": 9,
+      "functions": [],
+      "malicious": false,
+      "isDisputed": false,
+      "moduleName": "org.postgresql:postgresql",
+      "references": [
+        {
+          "url": "https://github.com/pgjdbc/pgjdbc/commit/93b0fcb2711d9c1e3a2a03134369738a02a58b40",
+          "title": "GitHub Commit"
+        }
+      ],
+      "cvssDetails": [
+        {
+          "assigner": "NVD",
+          "severity": "critical",
+          "cvssV3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+          "cvssV3BaseScore": 9.8,
+          "modificationTime": "2024-03-26T01:11:17.086504Z"
+        },
+        {
+          "assigner": "Red Hat",
+          "severity": "critical",
+          "cvssV3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+          "cvssV3BaseScore": 9.8,
+          "modificationTime": "2024-03-27T13:49:04.308372Z"
+        },
+        {
+          "assigner": "SUSE",
+          "severity": "critical",
+          "cvssV3Vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+          "cvssV3BaseScore": 9.8,
+          "modificationTime": "2024-03-11T09:51:15.204712Z"
+        }
+      ],
+      "cvssSources": [
+        {
+          "type": "primary",
+          "vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:C/C:H/I:H/A:H",
+          "assigner": "Snyk",
+          "severity": "critical",
+          "baseScore": 9,
+          "cvssVersion": "3.1",
+          "modificationTime": "2024-04-20T15:25:03.349744Z"
+        },
+        {
+          "type": "secondary",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+          "assigner": "NVD",
+          "severity": "critical",
+          "baseScore": 9.8,
+          "cvssVersion": "3.1",
+          "modificationTime": "2024-03-26T01:11:17.086504Z"
+        },
+        {
+          "type": "secondary",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+          "assigner": "Red Hat",
+          "severity": "critical",
+          "baseScore": 9.8,
+          "cvssVersion": "3.1",
+          "modificationTime": "2024-03-27T13:49:04.308372Z"
+        },
+        {
+          "type": "secondary",
+          "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+          "assigner": "SUSE",
+          "severity": "critical",
+          "baseScore": 9.8,
+          "cvssVersion": "3.1",
+          "modificationTime": "2024-03-11T09:51:15.204712Z"
+        }
+      ],
+      "description": "## Overview\n[org.postgresql:postgresql](https://mvnrepository.com/artifact/org.postgresql/postgresql) is a Java JDBC 4.2 (JRE 8+) driver for PostgreSQL database.\n\nAffected versions of this package are vulnerable to SQL Injection when using `PreferQueryMode=SIMPLE`, which is not the default setting. By passing in a numeric value placeholder immediately preceded by a minus and followed by a second placeholder for a string value, on the same line, an attacker can construct a payload that alters the parameterized query into which it is interpolated. This effectively bypasses the protections against SQL Injection that parameterized queries offer.\n## Remediation\nUpgrade `org.postgresql:postgresql` to version 42.2.28.jre7, 42.3.9, 42.4.4, 42.5.5, 42.6.1, 42.7.2 or higher.\n## References\n- [GitHub Commit](https://github.com/pgjdbc/pgjdbc/commit/93b0fcb2711d9c1e3a2a03134369738a02a58b40)\n",
+      "epssDetails": {
+        "percentile": "0.86422",
+        "probability": "0.03510",
+        "modelVersion": "v2025.03.14"
+      },
+      "identifiers": {
+        "CVE": [
+          "CVE-2024-1597"
+        ],
+        "CWE": [
+          "CWE-89"
+        ],
+        "GHSA": [
+          "GHSA-24rp-q3w6-vc56"
+        ]
+      },
+      "packageName": "org.postgresql:postgresql",
+      "proprietary": false,
+      "creationTime": "2024-02-19T19:31:47.577695Z",
+      "functions_new": [],
+      "alternativeIds": [],
+      "disclosureTime": "2024-02-19T13:45:20Z",
+      "exploitDetails": {
+        "sources": [],
+        "maturityLevels": [
+          {
+            "type": "secondary",
+            "level": "Not Defined",
+            "format": "CVSSv3"
+          },
+          {
+            "type": "primary",
+            "level": "Not Defined",
+            "format": "CVSSv4"
+          }
+        ]
+      },
+      "packageManager": "maven",
+      "mavenModuleName": {
+        "groupId": "org.postgresql",
+        "artifactId": "postgresql"
+      },
+      "publicationTime": "2024-02-19T19:31:47.787048Z",
+      "severityBasedOn": "CVSS",
+      "modificationTime": "2024-04-20T15:25:03.349744Z",
+      "socialTrendAlert": false,
+      "severityWithCritical": "critical",
+      "from": [
+        "com.auth:auth-screen@1.0.0",
+        "org.postgresql:postgresql@42.6.0"
+      ],
+      "upgradePath": [
+        false,
+        "org.postgresql:postgresql@42.6.1"
+      ],
+      "isUpgradable": true,
+      "isPatchable": false,
+      "name": "org.postgresql:postgresql",
+      "version": "42.6.0"
+    }
+  ],
+  "ok": false,
+  "dependencyCount": 2,
+  "org": "vargasmiranda-victormanuel",
+  "policy": "# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.\nversion: v1.25.1\nignore: {}\npatch: {}\n",
+  "isPrivate": true,
+  "licensesPolicy": {
+    "severities": {},
+    "orgLicenseRules": {
+      "AGPL-1.0": {
+        "licenseType": "AGPL-1.0",
+        "severity": "high",
+        "instructions": ""
+      },
+      "AGPL-3.0": {
+        "licenseType": "AGPL-3.0",
+        "severity": "high",
+        "instructions": ""
+      },
+      "Artistic-1.0": {
+        "licenseType": "Artistic-1.0",
+        "severity": "medium",
+        "instructions": ""
+      },
+      "Artistic-2.0": {
+        "licenseType": "Artistic-2.0",
+        "severity": "medium",
+        "instructions": ""
+      },
+      "CDDL-1.0": {
+        "licenseType": "CDDL-1.0",
+        "severity": "medium",
+        "instructions": ""
+      },
+      "CPOL-1.02": {
+        "licenseType": "CPOL-1.02",
+        "severity": "high",
+        "instructions": ""
+      },
+      "EPL-1.0": {
+        "licenseType": "EPL-1.0",
+        "severity": "medium",
+        "instructions": ""
+      },
+      "GPL-2.0": {
+        "licenseType": "GPL-2.0",
+        "severity": "high",
+        "instructions": ""
+      },
+      "GPL-3.0": {
+        "licenseType": "GPL-3.0",
+        "severity": "high",
+        "instructions": ""
+      },
+      "LGPL-2.0": {
+        "licenseType": "LGPL-2.0",
+        "severity": "medium",
+        "instructions": ""
+      },
+      "LGPL-2.1": {
+        "licenseType": "LGPL-2.1",
+        "severity": "medium",
+        "instructions": ""
+      },
+      "LGPL-3.0": {
+        "licenseType": "LGPL-3.0",
+        "severity": "medium",
+        "instructions": ""
+      },
+      "MPL-1.1": {
+        "licenseType": "MPL-1.1",
+        "severity": "medium",
+        "instructions": ""
+      },
+      "MPL-2.0": {
+        "licenseType": "MPL-2.0",
+        "severity": "medium",
+        "instructions": ""
+      },
+      "MS-RL": {
+        "licenseType": "MS-RL",
+        "severity": "medium",
+        "instructions": ""
+      },
+      "SimPL-2.0": {
+        "licenseType": "SimPL-2.0",
+        "severity": "high",
+        "instructions": ""
+      }
+    }
+  },
+  "packageManager": "maven",
+  "ignoreSettings": {
+    "adminOnly": false,
+    "reasonRequired": false,
+    "disregardFilesystemIgnores": false
+  },
+  "summary": "1 vulnerable dependency path",
+  "remediation": {
+    "unresolved": [],
+    "upgrade": {
+      "org.postgresql:postgresql@42.6.0": {
+        "upgradeTo": "org.postgresql:postgresql@42.6.1",
+        "upgrades": [
+          "org.postgresql:postgresql@42.6.0"
+        ],
+        "vulns": [
+          "SNYK-JAVA-ORGPOSTGRESQL-6252740"
+        ]
+      }
+    },
+    "patch": {},
+    "ignore": {},
+    "pin": {}
+  },
+  "filesystemPolicy": false,
+  "filtered": {
+    "ignore": [],
+    "patch": []
+  },
+  "uniqueCount": 1,
+  "projectName": "com.auth:auth-screen",
+  "displayTargetFile": "pom.xml",
+  "hasUnknownVersions": false,
+  "path": "C:\\Users\\Vargas\\Documents\\GitHub\\auth-screen"
+}
