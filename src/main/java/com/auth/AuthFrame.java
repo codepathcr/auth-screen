@@ -14,7 +14,12 @@ public class AuthFrame extends JFrame {
     private final AuthService authService;
 
     public AuthFrame() {
-        this.authService = new AuthService();
+        this(new AuthService());
+    }
+
+    // Package-visible constructor for tests to inject a stub AuthService
+    AuthFrame(AuthService authService) {
+        this.authService = authService;
 
         setTitle("Pantalla de Autenticación");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -53,6 +58,7 @@ public class AuthFrame extends JFrame {
 
         gbc.gridx = 1;
         emailField = new JTextField(20);
+        emailField.setName("emailField");
         emailField.setOpaque(false);
         emailField.setBorder(BorderFactory.createEmptyBorder(8, 15, 8, 15));
         emailField.setBackground(new Color(30, 41, 59));
@@ -76,6 +82,7 @@ public class AuthFrame extends JFrame {
 
         gbc.gridx = 1;
         passwordField = new JPasswordField(20);
+        passwordField.setName("passwordField");
         passwordField.setOpaque(false);
         passwordField.setBorder(BorderFactory.createEmptyBorder(8, 15, 8, 15));
         passwordField.setBackground(new Color(30, 41, 59));
@@ -99,6 +106,7 @@ public class AuthFrame extends JFrame {
         btnGbc.gridx = 0;
 
         JButton loginButton = new JButton("Ingresar");
+        loginButton.setName("loginButton");
         loginButton.addActionListener(this::handleLogin);
         loginButton.setForeground(Color.WHITE);
         loginButton.setFont(new Font("Arial", Font.BOLD, 16));
@@ -115,6 +123,7 @@ public class AuthFrame extends JFrame {
         loginPanel.setMinimumSize(btnSize);
 
         JButton forgotButton = new JButton("Olvidé mi clave");
+        forgotButton.setName("forgotButton");
         forgotButton.addActionListener(this::handleForgotPassword);
         forgotButton.setForeground(Color.WHITE);
         forgotButton.setFont(new Font("Arial", Font.BOLD, 16));
@@ -141,6 +150,7 @@ public class AuthFrame extends JFrame {
         gbc.gridy++;
         gbc.gridwidth = 2;
         statusLabel = new JLabel(" ");
+        statusLabel.setName("statusLabel");
         statusLabel.setForeground(Color.WHITE);
         panel.add(statusLabel, gbc);
 
