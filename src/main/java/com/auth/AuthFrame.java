@@ -88,6 +88,8 @@ public class AuthFrame extends JFrame {
         passwordField.setBackground(new Color(30, 41, 59));
         passwordField.setForeground(Color.WHITE);
         passwordField.setFont(new Font("Arial", Font.PLAIN, 14));
+        // Add action listener so Enter key triggers login
+        passwordField.addActionListener(this::handleLogin);
         JPanel passwordPanel = createRoundedPanel(passwordField);
         passwordPanel.setPreferredSize(new Dimension(250, 50));
         // make password input expand like the email input

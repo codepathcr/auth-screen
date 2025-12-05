@@ -51,6 +51,11 @@ public class AuthFrameUiMoreTests extends AssertJSwingJUnitTestCase {
                 }
                 return "Login exitoso 🎉";
             }
+
+            @Override
+            public String recoverPassword(String email) {
+                return "Se ha enviado un email de recuperación (simulado).";
+            }
         };
 
         // recreate window with the validation stub
